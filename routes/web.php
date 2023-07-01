@@ -23,6 +23,7 @@ Route::get('/', function () {
 Route::group(['prefix'=>'admin'], function(){
     //category Route
     Route::get('category',[CategoryController::class,'index'])->name('category.index');
+    Route::get('category/create',[CategoryController::class,'create'])->name('category.create');
 });
 
 //helo world route

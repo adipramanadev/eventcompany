@@ -22,10 +22,16 @@
     <div class="content">
         <div class="container-fluid">
             <div class="row">
+                {{-- session flash --}}
+                @if (session('success'))
+                    @alert(['type' => 'success'])
+                    {!! session('success') !!}
+                    @endalert
+                @endif
                 <div class="col-lg-6">
                     <div class="card">
                         <div class="card-header">
-                            <h4 class="card-title">Category</h4>
+                            <a href="{{ route('category.create') }}" class="btn btn-primary">Tambah data</a>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
