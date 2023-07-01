@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,9 +22,7 @@ Route::get('/', function () {
 //prefix group
 Route::group(['prefix'=>'admin'], function(){
     //category Route
-    Route::get('coba',function(){
-        return '<h1>Hello World</h1>';
-    });
+    Route::get('category',[CategoryController::class,'index'])->name('category.index');
 });
 
 //helo world route
