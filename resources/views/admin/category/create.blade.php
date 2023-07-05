@@ -9,7 +9,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <!-- /.col -->
-                <div class="col-sm-6">
+                <div class="col-12">
                     <h1 class="m-0">Tambah Data Category</h1>
                 </div><!-- /.col -->
                 <!-- /.col -->
@@ -23,12 +23,18 @@
         <div class="container-fluid">
             <div class="row">
                 {{-- session flash error --}}
-
-                @if (session('error'))
-                    @alert(['type' => 'danger'])
-                    {!! session('error') !!}
-                    @endalert
+                @if ($errors->any() > 0)
+                    {{-- class alert
+                         --}}
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
                 @endif
+
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
@@ -37,11 +43,11 @@
                             </h3>
                         </div>
                         <div class="card-body">
-                            <form action="" method="post">
+                            <form action="{{ route('category.store') }}" method="post">
                                 @csrf
                                 <div class="form-group">
                                     <label for="">Nama Kategori</label>
-                                    <input type="text" required placeholder="Nama Kategori Event" name="namakategori"
+                                    <input type="text" placeholder="Nama Kategori Event" name="namakategori"
                                         class="form-control">
                                 </div>
                                 <button class="btn btn-primary" type="submit">Simpan</button>

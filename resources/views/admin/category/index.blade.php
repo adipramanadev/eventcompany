@@ -24,11 +24,11 @@
             <div class="row">
                 {{-- session flash --}}
                 @if (session('success'))
-                    @alert(['type' => 'success'])
-                    {!! session('success') !!}
-                    @endalert
+                    <div class="alert alert-success">
+                        {!! session('success') !!}
+                    </div>
                 @endif
-                <div class="col-lg-6">
+                <div class="col-lg-12">
                     <div class="card">
                         <div class="card-header">
                             <a href="{{ route('category.create') }}" class="btn btn-primary">Tambah data</a>
@@ -44,7 +44,18 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-
+                                        @foreach ($category as $item)
+                                            <tr>
+                                                <td>{{ $loop->iteration }}</td>
+                                                <td>{{ $item->namakategori }}</td>
+                                                <td>
+                                                    <a href="{{ route('category.edit', $item->id) }}"
+                                                        class="btn btn-outline-warning"><i class="fas fa-edit"></i></a>
+                                                    <a href="{{ route('category.destroy', $item->id) }}"
+                                                        class="btn btn-danger"><i class="fas fa-trash"></i></a>
+                                                </td>
+                                            </tr>
+                                        @endforeach
                                     </tbody>
 
                                 </table>

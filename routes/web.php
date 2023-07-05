@@ -24,6 +24,9 @@ Route::group(['prefix'=>'admin'], function(){
     //category Route
     Route::get('category',[CategoryController::class,'index'])->name('category.index');
     Route::get('category/create',[CategoryController::class,'create'])->name('category.create');
+    Route::post('category',[CategoryController::class,'store'])->name('category.store');
+    Route::get('category/edit/{id}',[CategoryController::class,'edit'])->name('category.edit');
+    Route::get('category/delete/{id}',[CategoryController::class,'destroy'])->name('category.destroy');
 });
 
 //helo world route
