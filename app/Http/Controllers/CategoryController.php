@@ -68,9 +68,23 @@ class CategoryController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Category $category)
+    public function update(Request $request, $id)
     {
-        //
+        //validate
+        $this->validate($request,[
+            'namakategori'=>'required'
+        ]);
+        //get data id
+        $category = Category::find($id);
+        //input data
+        $category->namakategori = $request->input('namakategori');
+        //save data
+        if ($category->save()) {
+            return redirect()->route('category.index')->with('success','Category Updated Successfully');
+        } else {
+            return redirect()->back()->with('errors','Something went wrong');
+        }
+
     }
 
     /**
