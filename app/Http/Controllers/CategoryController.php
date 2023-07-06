@@ -12,8 +12,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
-        return view('admin.category.index');
+        $category = Category::all();
+        return view('admin.category.index',compact('category'));
     }
 
     /**
@@ -21,7 +21,9 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        //category data
+
+        return view('admin.category.create');
     }
 
     /**
@@ -29,7 +31,20 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //validate
+        $this->validate($request,[
+            'namakategori'=>'required'
+        ]);
+        //input data
+        $category = $request->all();
+        //save data
+        $save = Category::create($category);
+        if ($save) {
+            return redirect()->route('category.index')->with('success','Category Created Successfully');
+        } else {
+            return redirect()->back()->with('errors','Something went wrong');
+        }
+
     }
 
     /**
@@ -43,24 +58,46 @@ class CategoryController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Category $category)
+    public function edit($id)
     {
-        //
+        //get data
+        $category = Category::find($id);
+        return view('admin.category.edit',compact('category'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Category $category)
+    public function update(Request $request, $id)
     {
-        //
+        //validate
+        $this->validate($request,[
+            'namakategori'=>'required'
+        ]);
+        //get data id
+        $category = Category::find($id);
+        //input data
+        $category->namakategori = $request->input('namakategori');
+        //save data
+        if ($category->save()) {
+            return redirect()->route('category.index')->with('success','Category Updated Successfully');
+        } else {
+            return redirect()->back()->with('errors','Something went wrong');
+        }
+
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Category $category)
+    public function destroy($id)
     {
-        //
+        //delete data
+        $category = Category::find($id);
+        if ($category->delete()) {
+            return redirect()->route('category.index')->with('success','Category Deleted Successfully');
+        }else{
+            return redirect()->back()->with('errors','Something went wrong');
+        }
     }
 }

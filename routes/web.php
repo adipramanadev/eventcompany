@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\EventController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,6 +24,19 @@ Route::get('/', function () {
 Route::group(['prefix'=>'admin'], function(){
     //category Route
     Route::get('category',[CategoryController::class,'index'])->name('category.index');
+    Route::get('category/create',[CategoryController::class,'create'])->name('category.create');
+    Route::post('category',[CategoryController::class,'store'])->name('category.store');
+    Route::get('category/edit/{id}',[CategoryController::class,'edit'])->name('category.edit');
+    Route::put('category/update/{id}',[CategoryController::class,'update'])->name('category.update');
+    Route::get('category/delete/{id}',[CategoryController::class,'destroy'])->name('category.destroy');
+
+    //events Route
+    Route::get('events',[EventController::class,'index'])->name('events.index');
+    Route::get('events/create',[EventController::class,'create'])->name('events.create');
+    Route::post('events',[EventController::class,'store'])->name('events.store');
+    Route::get('events/edit/{id}',[EventController::class,'edit'])->name('events.edit');
+    Route::put('events/update/{id}',[EventController::class,'update'])->name('events.update');
+    Route::delete('events/delete/{id}',[EventController::class,'destroy'])->name('events.destroy');
 });
 
 //helo world route

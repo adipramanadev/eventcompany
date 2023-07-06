@@ -22,10 +22,16 @@
     <div class="content">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-lg-6">
+                {{-- session flash --}}
+                @if (session('success'))
+                    <div class="alert alert-success">
+                        {!! session('success') !!}
+                    </div>
+                @endif
+                <div class="col-lg-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4 class="card-title">Category</h4>
+                            <a href="{{ route('category.create') }}" class="btn btn-primary">Tambah data</a>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -38,7 +44,18 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-
+                                        @foreach ($category as $item)
+                                            <tr>
+                                                <td>{{ $loop->iteration }}</td>
+                                                <td>{{ $item->namakategori }}</td>
+                                                <td>
+                                                    <a href="{{ route('category.edit', $item->id) }}"
+                                                        class="btn btn-outline-warning"><i class="fas fa-edit"></i></a>
+                                                    <a href="{{ route('category.destroy', $item->id) }}"
+                                                        class="btn btn-danger"><i class="fas fa-trash"></i></a>
+                                                </td>
+                                            </tr>
+                                        @endforeach
                                     </tbody>
 
                                 </table>
