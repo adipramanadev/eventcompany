@@ -32,6 +32,7 @@ Route::group(['prefix'=>'admin'], function(){
 
     //events Route
     Route::get('events',[EventController::class,'index'])->name('events.index');
+    Route::get('events/create',[EventController::class,'create'])->name('events.create');
 });
 
 //helo world route
