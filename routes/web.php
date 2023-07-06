@@ -43,3 +43,11 @@ Route::group(['prefix'=>'admin'], function(){
 Route::get('hello',function(){
     return '<h1>Hello World</h1>';
 });
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
