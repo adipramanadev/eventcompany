@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Event;
+use App\Models\Category;
 use Illuminate\Http\Request;
 
 class EventController extends Controller
@@ -23,7 +24,8 @@ class EventController extends Controller
     public function create()
     {
         //
-        return view('admin.event.create');
+        $categories = Category::all();
+        return view('admin.event.create', compact('categories'));
     }
 
     /**
@@ -31,7 +33,30 @@ class EventController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //validate the form
+        $request->validate([
+            'title' => 'required',
+            'description' => 'required',
+            'category_id' => 'required',
+            'start_time' => 'required',
+            'venue' => 'required',
+        ]);
+        //store the data
+        $events = Event::create([
+            'title' => $request->title,
+            'description' => $request->description,
+            'category_id' => $request->category_id,
+            'start_time' => $request->start_time,
+            'venue' => $request->venue,
+        ]);
+        //redirect to events.index
+        if($events){
+            //redirect with success message
+            return redirect()->route('events.index')->with('success','Event created successfully');
+        } else {
+            //redirect with error message
+            return redirect()->route('events.index')->with('errors','Event creation failed');
+        }
     }
 
     /**

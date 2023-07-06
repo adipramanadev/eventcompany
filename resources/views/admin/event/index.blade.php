@@ -23,9 +23,13 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-12">
+                    {{-- session succes --}}
+                    @if (session('success'))
+                        <div class="alert alert-success">{{ session('success') }}</div>
+                    @endif
                     <div class="card">
                         <div class="card-header">
-                            <a href="" class="btn btn-primary">Tambah Data</a>
+                            <a href="{{ route('events.create') }}" class="btn btn-primary">Tambah Data</a>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -43,8 +47,18 @@
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
                                                 <td>{{ $item->title }}</td>
-                                                <td>{{ $item->category_id }}</td>
-                                                <td>&nbsp;</td>
+                                                <td>{{ $item->category->namakategori }}</td>
+                                                <td>
+                                                    <a href="{{ route('events.edit', $item->id) }}"
+                                                        class="btn btn-warning btn-sm">Edit</a>
+                                                    <form action="{{ route('events.destroy', $item->id) }}" method="post"
+                                                        class="d-inline">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button class="btn btn-danger btn-sm"
+                                                            onclick="return confirm('Yakin hapus data?')">Hapus</button>
+                                                    </form>
+                                                </td>
                                             </tr>
                                         @empty
                                             <tr>

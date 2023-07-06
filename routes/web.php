@@ -33,6 +33,10 @@ Route::group(['prefix'=>'admin'], function(){
     //events Route
     Route::get('events',[EventController::class,'index'])->name('events.index');
     Route::get('events/create',[EventController::class,'create'])->name('events.create');
+    Route::post('events',[EventController::class,'store'])->name('events.store');
+    Route::get('events/edit/{id}',[EventController::class,'edit'])->name('events.edit');
+    Route::put('events/update/{id}',[EventController::class,'update'])->name('events.update');
+    Route::get('events/delete/{id}',[EventController::class,'destroy'])->name('events.destroy');
 });
 
 //helo world route
