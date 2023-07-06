@@ -70,24 +70,59 @@ class EventController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Event $event)
+    public function edit($id)
     {
-        //
+        //get event by id
+        $events = Event::find($id);
+        $categories = Category::all();
+        return view('admin.event.edit', compact('events','categories'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Event $event)
+    public function update(Request $request, $id)
     {
-        //
+        //validate
+        $this->validate($request,[
+            'title' => 'required',
+            'description' => 'required',
+            'category_id' => 'required',
+            'start_time' => 'required',
+            'venue' => 'required',
+        ]);
+        //update data
+        $events = Event::find($id);
+        $events->title = $request->title;
+        $events->description = $request->description;
+        $events->category_id = $request->category_id;
+        $events->start_time = $request->start_time;
+        $events->venue = $request->venue;
+        //redirect to events.index
+        if($events->save()){
+            //redirect with success message
+            return redirect()->route('events.index')->with('success','Event updated successfully');
+        } else {
+            //redirect with error message
+            return redirect()->route('events.index')->with('errors','Event update failed');
+        }
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Event $event)
+    public function destroy($id)
     {
-        //
+        //delete data
+        $events = Event::find($id);
+        $events->delete();
+        //redirect to events.index
+        if($events){
+            //redirect with success message
+            return redirect()->route('events.index')->with('success','Event deleted successfully');
+        } else {
+            //redirect with error message
+            return redirect()->route('events.index')->with('errors','Event deletion failed');
+        }
     }
 }

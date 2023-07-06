@@ -36,7 +36,7 @@ Route::group(['prefix'=>'admin'], function(){
     Route::post('events',[EventController::class,'store'])->name('events.store');
     Route::get('events/edit/{id}',[EventController::class,'edit'])->name('events.edit');
     Route::put('events/update/{id}',[EventController::class,'update'])->name('events.update');
-    Route::get('events/delete/{id}',[EventController::class,'destroy'])->name('events.destroy');
+    Route::delete('events/delete/{id}',[EventController::class,'destroy'])->name('events.destroy');
 });
 
 //helo world route
