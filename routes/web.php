@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\EventController;
+use App\Http\Controllers\TiketController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -37,6 +38,10 @@ Route::group(['prefix'=>'admin'], function(){
     Route::get('events/edit/{id}',[EventController::class,'edit'])->name('events.edit');
     Route::put('events/update/{id}',[EventController::class,'update'])->name('events.update');
     Route::delete('events/delete/{id}',[EventController::class,'destroy'])->name('events.destroy');
+
+    //tiket route
+    Route::get('tiket',[TiketController::class,'index'])->name('tiket.index');
+
 });
 
 //helo world route
