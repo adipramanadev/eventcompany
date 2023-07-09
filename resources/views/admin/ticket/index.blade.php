@@ -22,17 +22,17 @@
     <div class="content">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-lg-12">
+        <div class="col-lg-12">
                     {{-- session succes --}}
                     @if (session('success'))
                         <div class="alert alert-success">{{ session('success') }}</div>
                     @endif
                     <div class="card">
                         <div class="card-header">
-                            {{-- <a href="{{ route('tickets.create') }}" class="btn btn-primary">Tambah Data</a> --}}
+                            <a href="{{ route('ticket.create') }}" class="btn btn-primary">Tambah Data</a>
                         </div>
                         <div class="card-body">
-                            <div class="table-responsive">
+                        <div class="table-responsive">
                                 <table class="table table-bordered">
                                     <thead>
                                         <tr>
@@ -42,8 +42,7 @@
                                             <th>Tools</th>
                                         </tr>
                                     </thead>
-                                    {{ $tickets->links() }}              <tbody>
-
+                                    <tbody>
                                     </tbody>
                                 </table>
                             </div>

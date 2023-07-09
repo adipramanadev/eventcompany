@@ -59,7 +59,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('tiket.index') }}" class="nav-link">
+                            <a href="{{ route('ticket.index') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Data Ticket</p>
                             </a>
