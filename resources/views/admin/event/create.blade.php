@@ -38,7 +38,7 @@
                             <h3 class="card-title">Form Tambah Data</h3>
                         </div>
                         <div class="card-body">
-                            <form action="{{ route('events.store') }}" method="post">
+                            <form action="{{ route('events.store') }}" enctype="multipart/form-data" method="post">
                                 @csrf
                                 @method('POST')
                                 <div class="form-group">
@@ -66,6 +66,10 @@
                                 <div class="form-group">
                                     <label for="venue">Venue</label>
                                     <input type="text" name="venue" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label for="photo">photo</label>
+                                    <input type="file" name="photo" class="form-control">
                                 </div>
                                 <button type="submit" class="float-right btn btn-primary">Simpan</button>
                             </form>

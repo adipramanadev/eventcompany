@@ -39,6 +39,7 @@
                                             <th>#</th>
                                             <th>Title</th>
                                             <th>Kategori Event</th>
+                                            <th>Photo</th>
                                             <th>Tools</th>
                                         </tr>
                                     </thead>
@@ -48,6 +49,10 @@
                                                 <td>{{ $loop->iteration }}</td>
                                                 <td>{{ $item->title }}</td>
                                                 <td>{{ $item->category->namakategori }}</td>
+                                                <td>
+                                                    {{-- view image storage --}}
+                                                    <img src="{{ Storage::url($item->photo) }}" alt="{{ $item->title }}"
+                                                        width="100px" height="100px">
                                                 <td>
                                                     <a href="{{ route('events.edit', $item->id) }}"
                                                         class="btn btn-warning btn-sm">Edit</a>

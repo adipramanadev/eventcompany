@@ -41,6 +41,15 @@ class EventController extends Controller
             'start_time' => 'required',
             'venue' => 'required',
         ]);
+
+        //check the image
+        $photo_path = '';
+        //upload via storage
+        if($request->hasFile('photo')){
+            $photo = $request->file('photo');
+            $photo_path = $photo->store('public/photos');
+        }
+
         //store the data
         $events = Event::create([
             'title' => $request->title,
@@ -48,6 +57,7 @@ class EventController extends Controller
             'category_id' => $request->category_id,
             'start_time' => $request->start_time,
             'venue' => $request->venue,
+            'photo' => $photo_path,
         ]);
         //redirect to events.index
         if($events){
