@@ -40,7 +40,12 @@ Route::group(['prefix'=>'admin'], function(){
     Route::delete('events/delete/{id}',[EventController::class,'destroy'])->name('events.destroy');
 
     //tiket route
-    Route::get('tiket',[TiketController::class,'index'])->name('tiket.index');
+    Route::get('tiket',[TiketController::class,'index'])->name('ticket.index');
+    Route::get('tiket/create',[TiketController::class,'create'])->name('ticket.create');
+    Route::post('tiket',[TiketController::class,'store'])->name('ticket.store');
+    Route::get('tiket/edit/{id}',[TiketController::class,'edit'])->name('ticket.edit');
+    Route::put('tiket/update/{id}',[TiketController::class,'update'])->name('ticket.update');
+    Route::delete('tiket/delete/{id}',[TiketController::class,'destroy'])->name('ticket.destroy');
 
 });
 
