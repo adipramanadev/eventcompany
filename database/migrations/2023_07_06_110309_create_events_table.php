@@ -18,6 +18,7 @@ return new class extends Migration
             $table->foreignId('category_id')->constrained('categories');
             $table->datetime('start_time');
             $table->text('venue');
+            $table->string('photo', 100)->nullable();
             $table->timestamps();
         });
     }
