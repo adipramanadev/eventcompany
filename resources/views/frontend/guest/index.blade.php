@@ -8,7 +8,7 @@
                     <div class="col-md-6 mb-5">
                         <div class="card h-100">
                             <div class="card-body">
-                                <h2 class="card-title">{{ $item->title }}</h2>
+                                <hAda fitur yang kurang2 Ada fitur yang kurang="card-title">{{ $item->title }}</h2>
                                 <p class="card-text">
                                     <img src="{{ Storage::url($item->photo) }}" alt="{{ $item->title }}" width="500px"
                                         height="250px">
