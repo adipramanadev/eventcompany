@@ -1,9 +1,9 @@
 <footer class="main-footer">
     <!-- To the right -->
-    <div class="float-right d-none d-sm-inline">
+    {{-- <div class="float-right d-none d-sm-inline">
         Anything you want
-    </div>
+    </div> --}}
     <!-- Default to the left -->
-    <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights
+    <strong>Copyright &copy; <?php echo date('Y'); ?><a href="https://yorindocommunication.com/">Yorindo Ticket V.0.1</a></a>.</strong> All rights
     reserved.
-</footer>
+</footer>https://yorindocommunication.com/

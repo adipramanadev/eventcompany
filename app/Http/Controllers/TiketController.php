@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Tiket;
+use App\Models\Event;
 use Illuminate\Http\Request;
 
 class TiketController extends Controller
@@ -21,7 +22,8 @@ class TiketController extends Controller
      */
     public function create()
     {
-        //
+        $events = Event::all();
+        return view('admin.ticket.create', compact('events'));
     }
 
     /**

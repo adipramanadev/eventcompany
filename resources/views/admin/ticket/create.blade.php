@@ -22,10 +22,27 @@
     <div class="content">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-lg-12">
+
+                <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-titlle">Tambah Data</h3>
+                            <h3 class="card-title">Form Tambah Data</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="">Title</label>
+                                <input type="text" name="title" value="{{ old('title') }}" class="form-control"
+                                    placeholder="Masukkan Title">
+                            </div>
+                            <div class="form-group">
+                                <label for="event_id">Nama Event</label>
+                                <select name="event_id" id="event_id" class="form-control">
+                                    <option value="">Pilih</option>
+                                    @foreach ($events as $event)
+                                        <option value="{{ $event->id }}">{{ $event->title }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
                         </div>
                     </div>
                 </div>
